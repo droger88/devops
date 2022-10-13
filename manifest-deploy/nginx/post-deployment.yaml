@@ -13,6 +13,8 @@ spec:
       - name: test-container
         image: busybox:latest
         command:
-          - "echo hello world"
+          - /bin/sh
+          - -c
+          - echo hello world
       restartPolicy: Never
   backoffLimit: 2
