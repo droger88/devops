@@ -5,7 +5,7 @@ metadata:
   namespace: my-app
   annotations:
     argocd.argoproj.io/hook: PostSync
-    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
@@ -13,6 +13,8 @@ spec:
       - name: test-container
         image: busybox:latest
         command:
-          - "echo hello world"
+          - /bin/sh
+          - -c
+          - echo hello world
       restartPolicy: Never
   backoffLimit: 2
