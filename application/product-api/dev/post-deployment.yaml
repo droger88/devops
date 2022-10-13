@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: run-test-
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: test-container
+        image: busybox:latest
+        command:
+          - "echo hello world"
+      restartPolicy: Never
+  backoffLimit: 2
